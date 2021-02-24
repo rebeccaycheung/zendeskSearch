@@ -4,11 +4,36 @@ def getUserInput(prompt):
     user_input = input(prompt)
     return user_input
 
-def getTerms():
-    with open('users.json') as users_file:
-        data = json.load(users_file)
-        users = data[0]
-        print(users.keys())
+def readFile(file):
+    with open(file) as json_file:
+        data = json.load(json_file)
+        return data[0]
+
+def getAllTerms():
+    users = readFile('users.json')
+    organisations = readFile('organizations.json')
+    tickets = readFile('tickets.json')
+    
+    format_users = '\n'.join([*users])
+    format_organisations = '\n'.join([*organisations])
+    format_tickets = '\n'.join([*tickets])
+
+    print(f"""
+Users
+Fields to search by:
+{format_users}
+
+
+Organisations
+Fields to search by:
+{format_organisations}
+
+
+Tickets
+Fields to search by:
+{format_tickets}
+    """)
+
     return
 
 def main():
@@ -24,7 +49,7 @@ def main():
     command = getUserInput("Search: ")
     while command != "quit":
         if (command == "terms"):
-            return getTerms()
+            return getAllTerms()
         else:
             return
         command = getUserInput("Search: ")

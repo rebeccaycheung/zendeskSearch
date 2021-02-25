@@ -1,39 +1,25 @@
 import json
-
-def getUserInput(prompt):
-    user_input = input(prompt)
-    return user_input
+from search import Search
+from query import Query
 
 def readFile(file):
-    with open(file) as json_file:
-        data = json.load(json_file)
-        return data[0]
+    with open(file) as jsonFile:
+        data = json.load(jsonFile)
+        return data
 
-def getAllTerms():
-    users = readFile('users.json')
-    organisations = readFile('organizations.json')
-    tickets = readFile('tickets.json')
-    
-    format_users = '\n'.join([*users])
-    format_organisations = '\n'.join([*organisations])
-    format_tickets = '\n'.join([*tickets])
+def getUserInput(prompt):
+    userInput = input(prompt)
+    return userInput
 
-    print(f"""
-Users
-Fields to search by:
-{format_users}
-
-
-Organisations
-Fields to search by:
-{format_organisations}
-
-
-Tickets
-Fields to search by:
-{format_tickets}
-    """)
-
+def selectSearchType(query, command):
+    if (command == 1):
+        query.setCategory('users')
+    elif (command == 2):
+        query.setCategory('organisations')
+    elif (command == 3):
+        query.setCategory('tickets')
+    else:
+        return "Please enter a number between 1 and 3"
     return
 
 def main():
@@ -41,18 +27,40 @@ def main():
         Welcome to Zendesk Search!
 
         Type 'quit' to exit the program at any time.
-        Type 'terms' to view a list of terms you can search by.
+        Type 'terms' to view a list of terms you can search by for each category.
 
         Start by searching the term and value.
     """)
+
+    users = readFile('users.json')
+    organisations = readFile('organizations.json')
+    tickets = readFile('tickets.json')
+
+    search = Search(users, organisations, tickets)
+    query = Query()
     
-    command = getUserInput("Search: ")
+    command = getUserInput("Select which to search by 1) users, 2) organisations, 3) tickets: ")
     while command != "quit":
+        #handle errors
+        selectSearchType(query, int(command))
+        command = getUserInput("Search by term: ")
         if (command == "terms"):
-            return getAllTerms()
+            result = search.getTerms(query)
+            print(result)
         else:
-            return
-        command = getUserInput("Search: ")
+            termQuery = command
+            if (query.validateTerm(search, termQuery)):
+                command = getUserInput("Enter a value: ")
+                if (command == "quit"):
+                    return
+                valueQuery = command
+                query.setTerm(termQuery)
+                query.setValue(valueQuery)
+                result = search.findData(query)
+                print(result)
+            else:
+                print("The term you have entered does not exist, please enter another term.")
+        command = getUserInput("Select which to search by 1) users, 2) organisations, 3) tickets: ")
 
 if __name__ == "__main__":
     main()

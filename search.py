@@ -4,6 +4,7 @@ class Search:
         self.organisations = organisations
         self.tickets = tickets
 
+    #Temporary solution - need to figure out how to get all possible keys
     def getUsersKeys(self):
         return self.users[0]
 
@@ -41,6 +42,74 @@ class Search:
             return bool(value)
         else:
             return value
+    
+    def getDataByUser(self, user):
+        organisationId = user['organization_id']
+        organisationData = None
+        ticketData = []
+
+        for org in self.organisations:
+            if org['_id'] == organisationId:
+                organisationData = org
+        
+        for ticket in self.tickets:
+            try:
+                if ticket['organization_id'] == organisationId:
+                    ticketData.append(ticket)
+            except(KeyError):
+                continue
+
+        print(user)
+        print(organisationData)
+        print(ticketData)
+        return
+    
+    def getDataByOrganisation(self, organisation):
+        organisationId = organisation['_id']
+        userData = None
+        ticketData = []
+
+        for user in self.users:
+            if user['organization_id'] == organisationId:
+                userData = user
+        
+        for ticket in self.tickets:
+            try:
+                if ticket['organization_id'] == organisationId:
+                    ticketData.append(ticket)
+            except(KeyError):
+                continue
+
+        print(userData)
+        print(organisation)
+        print(ticketData)
+        return
+    
+    def getUserTicket(self, ticket):
+        organisationId = ticket['organization_id']
+        userData = None
+        organisationData = None
+        ticketData = [ticket]
+
+        for org in self.organisations:
+            if org['_id'] == organisationId:
+                organisationData = org
+        
+        for user in self.users:
+            if user['organization_id'] == organisationId:
+                userData = user
+        
+        for ticket in self.tickets:
+            try:
+                if ticket['organization_id'] == organisationId:
+                    ticketData.append(ticket)
+            except(KeyError):
+                continue
+
+        print(userData)
+        print(organisationData)
+        print(ticketData)
+        return
 
     def findData(self, query):
         term = query.getTerm()
@@ -48,17 +117,20 @@ class Search:
         category = query.getCategory()
 
         if (category == 'users'):
-            userQuery = any(x for x in self.users if x[term] == self.convertValue(value))
-            if (userQuery):
-                return "Searching users..."
+            for user in self.users:
+                if user[term] == self.convertValue(value):
+                    print("Searching users...")
+                    return self.getDataByUser(user)
         elif (category == 'organisations'):
-            organisationsQuery = any(x for x in self.organisations if x[term] == self.convertValue(value))
-            if (organisationsQuery):
-                return "Searching organisations..."
+            for organisation in self.organisations:
+                if organisation[term] == self.convertValue(value):
+                    print("Searching organisations...")
+                    return self.getDataByOrganisation(organisation)
         elif (category == 'tickets'):
-            ticketsQuery = any(x for x in self.tickets if x[term] == self.convertValue(value))
-            if (ticketsQuery):
-                return "Searching tickets..."
+            for ticket in self.tickets:
+                if ticket[term] == self.convertValue(value):
+                    print("Searching tickets...")
+                    return self.getDataByTicket(ticket)
         
         return "Cannot find any results"
         

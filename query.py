@@ -1,8 +1,8 @@
 class Query:
-    def __init__(self):
-        self.category = None
-        self.term = None
-        self.value = None
+    def __init__(self, category, term, value):
+        self.category = category
+        self.term = term
+        self.value = value
 
     def setCategory(self, category):
         self.category = category

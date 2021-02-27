@@ -25,6 +25,8 @@ class SearchUsers:
                     userData.append(user)
             except(KeyError):
                 continue
+        if (len(userData) == 0):
+            return "No results for users found"
         return userData
 
     def getData(self, user, searchOrgs, searchTickets, value, term):

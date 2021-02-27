@@ -25,6 +25,8 @@ class SearchTickets:
                     ticketData.append(ticket)
             except(KeyError):
                 continue
+        if (len(ticketData) == 0):
+            return "No results for tickets found"
         return ticketData
 
     def getData(self, currentTicket, searchUsers, searchOrgs, value, term):

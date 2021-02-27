@@ -28,15 +28,15 @@ def main():
     """)
 
     search = Search()
-    query = Query()
+    query = Query(None, None, None)
     
     command = getUserInput(constants.CATEGORY_SELECTION)
     while command != "quit":
         try:
             selectSearchType(query, int(command))
         except(ValueError):
+            print(constants.CATEGORY_SELECTION_TRY_AGAIN)
             command = getUserInput(constants.CATEGORY_SELECTION)
-            command = getUserInput(constants.CATEGORY_SELECTION_TRY_AGAIN)
             continue
 
         command = getUserInput(constants.SEARCH_TERM)

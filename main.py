@@ -57,7 +57,8 @@ def main():
                 query.setTerm(termQuery)
                 query.setValue(valueQuery)
                 result = search.findData(query)
-                print(result)
+                if (result != None):
+                    print(result)
             else:
                 print("The term you have entered does not exist, please enter another term.")
         command = getUserInput("Select which to search by 1) users, 2) organisations, 3) tickets: ")

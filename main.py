@@ -55,6 +55,11 @@ def main():
             if (result != None):
                 print(result)
         command = getUserInput(constants.CATEGORY_SELECTION)
+    try:
+        exit(0)
+    except:
+        exit(1)
+        raise
 
 if __name__ == "__main__":
     main()

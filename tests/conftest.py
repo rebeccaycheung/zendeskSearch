@@ -9,7 +9,7 @@ def emptyQuery():
 @pytest.fixture
 def query():
     from query import Query
-    query = Query('1', '_id', '1')
+    query = Query('users', '_id', '1')
     yield query
 
 @pytest.fixture

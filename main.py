@@ -1,11 +1,6 @@
-import json
+import constants
 from search import Search
 from query import Query
-
-def readFile(file):
-    with open(file) as jsonFile:
-        data = json.load(jsonFile)
-        return data
 
 def getUserInput(prompt):
     userInput = input(prompt)
@@ -32,36 +27,34 @@ def main():
         Start by searching the term and value.
     """)
 
-    users = readFile('users.json')
-    organisations = readFile('organizations.json')
-    tickets = readFile('tickets.json')
-
-    search = Search(users, organisations, tickets)
+    search = Search()
     query = Query()
     
-    command = getUserInput("Select which to search by 1) users, 2) organisations, 3) tickets: ")
+    command = getUserInput(constants.CATEGORY_SELECTION)
     while command != "quit":
-        #handle errors
-        selectSearchType(query, int(command))
-        command = getUserInput("Search by term: ")
+        try:
+            selectSearchType(query, int(command))
+        except(ValueError):
+            command = getUserInput(constants.CATEGORY_SELECTION)
+            command = getUserInput(constants.CATEGORY_SELECTION_TRY_AGAIN)
+            continue
+
+        command = getUserInput(constants.SEARCH_TERM)
         if (command == "terms"):
-            result = search.getTerms(query)
-            print(result)
+            query.setTerm(command)
+            result = search.findData(query)
+            if (result != None):
+                print(result)
         else:
             termQuery = command
-            if (query.validateTerm(search, termQuery)):
-                command = getUserInput("Enter a value: ")
-                if (command == "quit"):
-                    return
-                valueQuery = command
-                query.setTerm(termQuery)
-                query.setValue(valueQuery)
-                result = search.findData(query)
-                if (result != None):
-                    print(result)
-            else:
-                print("The term you have entered does not exist, please enter another term.")
-        command = getUserInput("Select which to search by 1) users, 2) organisations, 3) tickets: ")
+            command = getUserInput(constants.SEARCH_VALUE)
+            valueQuery = command
+            query.setTerm(termQuery)
+            query.setValue(valueQuery)
+            result = search.findData(query)
+            if (result != None):
+                print(result)
+        command = getUserInput(constants.CATEGORY_SELECTION)
 
 if __name__ == "__main__":
     main()

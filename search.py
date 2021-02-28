@@ -16,7 +16,7 @@ class Search:
     def convertValue(self, value):
         if (value.isdigit()):
             return int(value)
-        elif (value == "True" or value == "False"):
+        elif (value.lower() == "true" or value.lower() == "false"):
             return bool(value)
         else:
             return value
@@ -34,37 +34,37 @@ class Search:
         value = query.getValue()
         category = query.getCategory()
 
-        if (term != 'terms') and not (searchUsers.validateTerm(term) or searchOrgs.validateTerm(term) or searchTickets.validateTerm(term)):
+        if (term != constants.TERMS) and not (searchUsers.validateTerm(term) or searchOrgs.validateTerm(term) or searchTickets.validateTerm(term)):
             return constants.TERM_INVALID
 
-        if (category == 'users'):
-            if (term == 'terms'):
+        if (category == constants.USERS):
+            if (term == constants.TERMS):
                 return searchUsers.getUsersKeysFormat()
             else:
                 for user in searchUsers.getUsers():
                     if user[term] == self.convertValue(value):
-                        print("Searching users...")
+                        print(constants.SEARCHING)
                         searchUsers.getData(user, searchOrgs, searchTickets, value, term)
-                        return "Finished searching"
+                        return constants.FINISHED_SEARCHING
 
-        elif (category == 'organisations'):
-            if (term == 'terms'):
+        elif (category == constants.ORGS):
+            if (term == constants.TERMS):
                 return searchOrgs.getOrgsKeysFormat()
             else:
                 for organisation in searchOrgs.getOrgs():
                     if organisation[term] == self.convertValue(value):
-                        print("Searching organisations...")
+                        print(constants.SEARCHING)
                         searchOrgs.getData(organisation, searchUsers, searchTickets, value, term)
-                        return "Finished searching"
+                        return constants.FINISHED_SEARCHING
 
-        elif (category == 'tickets'):
-            if (term == 'terms'):
+        elif (category == constants.TICKETS):
+            if (term == constants.TERMS):
                 return searchTickets.getTicketsKeysFormat()
             else:
                 for ticket in searchTickets.getTickets():
                     if ticket[term] == self.convertValue(value):
-                        print("Searching tickets...")
+                        print(constants.SEARCHING)
                         searchTickets.getData(ticket, searchUsers, searchOrgs, value, term)
-                        return "Finished searching"
+                        return constants.FINISHED_SEARCHING
 
-        return "Cannot find any results"
+        return constants.NO_RESULTS

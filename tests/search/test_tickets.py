@@ -24,7 +24,7 @@ class TestSearchTickets:
     def test_tickets_data_cannot_be_fetched_with_invalid_org_id(self, searchTickets):
         organisationId = "testing"
         response = searchTickets.getTicketData(organisationId)
-        expectedResponse = "No results for tickets found"
+        expectedResponse = "Cannot find any results"
         assert response == expectedResponse
     
     def test_fetch_data_by_tickets(self, capfd, searchUsers, searchOrgs, searchTickets):

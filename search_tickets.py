@@ -1,5 +1,6 @@
 import color
 import json
+import constants
 from custom_format import CustomFormat
 
 class SearchTickets:
@@ -9,7 +10,6 @@ class SearchTickets:
     def getTickets(self):
         return self.tickets
 
-    #Temporary solution - need to figure out how to get all possible keys
     def getTicketsKeys(self):
         return [*self.tickets[0]]
 
@@ -26,7 +26,7 @@ class SearchTickets:
             except(KeyError):
                 continue
         if (len(ticketData) == 0):
-            return "No results for tickets found"
+            return constants.NO_RESULTS
         return ticketData
 
     def getData(self, currentTicket, searchUsers, searchOrgs, value, term):
@@ -45,14 +45,14 @@ class SearchTickets:
                 continue
 
         print(color.UNDERLINE + color.BOLD + "Ticket results for ticket with {} as {}".format(term, value) + color.END)
-        print(customFormat.formatData(ticketData, "ticket"))
+        customFormat.formatData(ticketData, "ticket")
         print(color.UNDERLINE + color.BOLD + "Organisation result for ticket with {} as {}".format(term, value) + color.END)
-        print(customFormat.formatData(organisationData))
+        customFormat.formatData(organisationData)
         print(color.UNDERLINE + color.BOLD + "User results for ticket with {} as {}".format(term, value) + color.END)
-        print(customFormat.formatData(userData, "user"))
+        customFormat.formatData(userData, "user")
 
         return True
-    
+
     def validateTerm(self, term):
         ticketsKeys = self.getTicketsKeys()
 

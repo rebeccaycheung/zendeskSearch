@@ -25,7 +25,7 @@ class TestSearchUsers:
     def test_user_data_cannot_be_fetched_with_invalid_org_id(self, searchUsers):
         organisationId = "testing"
         response = searchUsers.getUserData(organisationId)
-        expectedResponse = "No results for users found"
+        expectedResponse = "Cannot find any results"
         assert response == expectedResponse
     
     def test_fetch_data_by_user(self, capfd, searchUsers, searchOrgs, searchTickets):

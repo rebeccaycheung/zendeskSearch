@@ -26,15 +26,15 @@ class TestSearch:
     
     def test_search_by_user_no_errors(self, search, userQuery):
         response = search.findData(userQuery)
-        assert response == "Finished searching"
+        assert response == "Finished searching."
     
     def test_search_by_org_no_errors(self, search, orgQuery):
         response = search.findData(orgQuery)
-        assert response == "Finished searching"
+        assert response == "Finished searching."
     
     def test_search_by_ticket_no_errors(self, search, ticketQuery):
         response = search.findData(ticketQuery)
-        assert response == "Finished searching"
+        assert response == "Finished searching."
 
     def test_convert_data(self, search):
         integer = search.convertValue("1")

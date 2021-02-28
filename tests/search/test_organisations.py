@@ -24,7 +24,7 @@ class TestOrgs:
     def test_org_data_cannot_be_fetched_with_invalid_org_id(self, searchOrgs):
         organisationId = "testing"
         response = searchOrgs.getOrgData(organisationId)
-        expectedResponse = "No organisation data found"
+        expectedResponse = "Cannot find any results"
         assert response == expectedResponse
     
     def test_fetch_data_by_org(self, capfd, searchUsers, searchOrgs, searchTickets):

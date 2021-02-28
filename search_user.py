@@ -1,5 +1,6 @@
 import color
 import json
+import constants
 from custom_format import CustomFormat
 
 class SearchUsers:
@@ -9,7 +10,6 @@ class SearchUsers:
     def getUsers(self):
         return self.users
 
-    #Temporary solution - need to figure out how to get all possible keys
     def getUsersKeys(self):
         return [*self.users[0]]
 
@@ -26,7 +26,7 @@ class SearchUsers:
             except(KeyError):
                 continue
         if (len(userData) == 0):
-            return "No results for users found"
+            return constants.NO_RESULTS
         return userData
 
     def getData(self, user, searchOrgs, searchTickets, value, term):

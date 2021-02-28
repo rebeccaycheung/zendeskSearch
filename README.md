@@ -19,11 +19,11 @@ If you do not know what terms you can search by for each category then type 'ter
 
 Type 'quit' to exit the program at any time.
 
+Example output: see exampleOutput.txt
+
 How to run tests
 ------
     $ ./setup.sh
     $ pytest
     or if above command does not work
     $ python3 -m pytest
-
-Example output: see exampleOutput.txt

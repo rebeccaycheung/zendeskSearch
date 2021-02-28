@@ -1,4 +1,4 @@
-import color
+from engine.color import BOLD, END, UNDERLINE
 
 class CustomFormat:
     def __init__(self):
@@ -11,13 +11,13 @@ class CustomFormat:
     def formatData(self, data, category=""):
         if (type(data) is dict):
             for key, value in data.items():
-                print("{} {} {} {}".format(color.BOLD, key.ljust(20), color.END, value))
+                print("{} {} {} {}".format(BOLD, key.ljust(20), END, value))
         elif (type(data) is str):
             print(data)
         else:
             for index, item in enumerate(data):
-                print(color.UNDERLINE + "{} {}".format(category, index+1) + color.END)
+                print(UNDERLINE + "{} {}".format(category, index+1) + END)
                 for key, value in item.items():
-                    print("{} {} {} {}".format(color.BOLD, key.ljust(20), color.END, value))
+                    print("{} {} {} {}".format(BOLD, key.ljust(20), END, value))
                 print("\n")
         return

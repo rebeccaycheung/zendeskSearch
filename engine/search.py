@@ -1,13 +1,13 @@
 import json
-import constants
-from search_user import SearchUsers
-from search_organisation import SearchOrgs
-from search_tickets import SearchTickets
+from engine.constants import USERS, ORGS, TICKETS, TERMS, TERM_INVALID, SEARCHING, FINISHED_SEARCHING, NO_RESULTS
+from engine.search_user import SearchUsers
+from engine.search_organisation import SearchOrgs
+from engine.search_tickets import SearchTickets
 
 class Search:
     def __init__(self):
         pass
-    
+
     def readFile(self, file):
         with open(file) as jsonFile:
             data = json.load(jsonFile)
@@ -34,37 +34,37 @@ class Search:
         value = query.getValue()
         category = query.getCategory()
 
-        if (term != constants.TERMS) and not (searchUsers.validateTerm(term) or searchOrgs.validateTerm(term) or searchTickets.validateTerm(term)):
-            return constants.TERM_INVALID
+        if (term != TERMS) and not (searchUsers.validateTerm(term) or searchOrgs.validateTerm(term) or searchTickets.validateTerm(term)):
+            return TERM_INVALID
 
-        if (category == constants.USERS):
-            if (term == constants.TERMS):
+        if (category == USERS):
+            if (term == TERMS):
                 return searchUsers.getUsersKeysFormat()
             else:
                 for user in searchUsers.getUsers():
                     if user[term] == self.convertValue(value):
-                        print(constants.SEARCHING)
+                        print(SEARCHING)
                         searchUsers.getData(user, searchOrgs, searchTickets, value, term)
-                        return constants.FINISHED_SEARCHING
+                        return FINISHED_SEARCHING
 
-        elif (category == constants.ORGS):
-            if (term == constants.TERMS):
+        elif (category == ORGS):
+            if (term == TERMS):
                 return searchOrgs.getOrgsKeysFormat()
             else:
                 for organisation in searchOrgs.getOrgs():
                     if organisation[term] == self.convertValue(value):
-                        print(constants.SEARCHING)
+                        print(SEARCHING)
                         searchOrgs.getData(organisation, searchUsers, searchTickets, value, term)
-                        return constants.FINISHED_SEARCHING
+                        return FINISHED_SEARCHING
 
-        elif (category == constants.TICKETS):
-            if (term == constants.TERMS):
+        elif (category == TICKETS):
+            if (term == TERMS):
                 return searchTickets.getTicketsKeysFormat()
             else:
                 for ticket in searchTickets.getTickets():
                     if ticket[term] == self.convertValue(value):
-                        print(constants.SEARCHING)
+                        print(SEARCHING)
                         searchTickets.getData(ticket, searchUsers, searchOrgs, value, term)
-                        return constants.FINISHED_SEARCHING
+                        return FINISHED_SEARCHING
 
-        return constants.NO_RESULTS
+        return NO_RESULTS

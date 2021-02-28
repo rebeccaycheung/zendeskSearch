@@ -10,7 +10,6 @@ userData = [
         "organization_id": 122
     }
 ]
-
 orgData = [
     {
         "_id": 121,
@@ -21,7 +20,6 @@ orgData = [
         "url": "http://initech.zendesk.com/api/v2/organizations/123.json"
     }
 ]
-
 ticketData = [
     {
         "_id": "c527e065-ec62-40ed-aa72-136f5ab0eb89",

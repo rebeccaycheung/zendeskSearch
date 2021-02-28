@@ -1,7 +1,6 @@
-import color
-import json
-import constants
-from custom_format import CustomFormat
+from engine.color import BOLD, END, UNDERLINE
+from engine.constants import NO_RESULTS
+from engine.custom_format import CustomFormat
 
 class SearchOrgs:
     def __init__(self, orgs):
@@ -24,7 +23,7 @@ class SearchOrgs:
                     return organisation
             except(KeyError):
                 continue
-        return constants.NO_RESULTS
+        return NO_RESULTS
 
     def getData(self, organisation, searchUsers, searchTickets, value, term):
         customFormat = CustomFormat()
@@ -33,11 +32,11 @@ class SearchOrgs:
         userData = searchUsers.getUserData(organisationId)
         ticketData = searchTickets.getTicketData(organisationId)
 
-        print(color.UNDERLINE + color.BOLD + "Result for organisation with {} as {}".format(term, value) + color.END)
+        print(UNDERLINE + BOLD + "Result for organisation with {} as {}".format(term, value) + END)
         customFormat.formatData(organisation, "user")
-        print(color.UNDERLINE + color.BOLD + "User results for organisation with {} as {}".format(term, value) + color.END)
+        print(UNDERLINE + BOLD + "User results for organisation with {} as {}".format(term, value) + END)
         customFormat.formatData(userData)
-        print(color.UNDERLINE + color.BOLD + "Ticket results for organisation with {} as {}".format(term, value) + color.END)
+        print(UNDERLINE + BOLD + "Ticket results for organisation with {} as {}".format(term, value) + END)
         customFormat.formatData(ticketData, "ticket")
 
         return True

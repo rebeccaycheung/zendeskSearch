@@ -19,7 +19,7 @@ If you do not know what terms you can search by for each category then type 'ter
 
 Type 'quit' to exit the program at any time.
 
-Example output: see exampleOutput.txt
+Example output: see example_output.txt
 
 How to run tests
 ------

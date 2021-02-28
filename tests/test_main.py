@@ -1,10 +1,9 @@
 import pytest
 from main import main
 from main import getUserInput
-from main import selectSearchType
+from main import setSearchType
 from main import searchEngine
 from main import validateCategorySelection
-import constants
 
 class TestMain:
     def test_user_input(self, monkeypatch):
@@ -16,33 +15,33 @@ class TestMain:
     def test_valid_category_selection(self, monkeypatch, emptyQuery):
         monkeypatch.setattr('builtins.input', lambda _: "1")
         user_input = input("Select which to search by 1) users, 2) organisations, 3) tickets: ")
-        selectSearchType(emptyQuery, int(user_input))
+        setSearchType(emptyQuery, int(user_input))
         assert emptyQuery.getCategory() == 'users'
 
         monkeypatch.setattr('builtins.input', lambda _: "2")
         user_input = input("Select which to search by 1) users, 2) organisations, 3) tickets: ")
-        selectSearchType(emptyQuery, int(user_input))
+        setSearchType(emptyQuery, int(user_input))
         assert emptyQuery.getCategory() == 'organisations'
 
         monkeypatch.setattr('builtins.input', lambda _: "3")
         user_input = input("Select which to search by 1) users, 2) organisations, 3) tickets: ")
-        selectSearchType(emptyQuery, int(user_input))
+        setSearchType(emptyQuery, int(user_input))
         assert emptyQuery.getCategory() == 'tickets'
     
     def test_invalid_range_category_selection(self, monkeypatch, emptyQuery):
         monkeypatch.setattr('builtins.input', lambda _: "123")
         user_input = input("Select which to search by 1) users, 2) organisations, 3) tickets: ")
-        response = selectSearchType(emptyQuery, int(user_input))
+        response = setSearchType(emptyQuery, int(user_input))
         assert response == "Please enter a number between 1 and 3"
 
         monkeypatch.setattr('builtins.input', lambda _: "4")
         user_input = input("Select which to search by 1) users, 2) organisations, 3) tickets: ")
-        response = selectSearchType(emptyQuery, int(user_input))
+        response = setSearchType(emptyQuery, int(user_input))
         assert response == "Please enter a number between 1 and 3"
 
         monkeypatch.setattr('builtins.input', lambda _: "0")
         user_input = input("Select which to search by 1) users, 2) organisations, 3) tickets: ")
-        response = selectSearchType(emptyQuery, int(user_input))
+        response = setSearchType(emptyQuery, int(user_input))
         assert response == "Please enter a number between 1 and 3"
 
     def test_invalid_category_selection(self, monkeypatch, emptyQuery):

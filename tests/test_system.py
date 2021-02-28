@@ -1,7 +1,8 @@
 import pytest
+from main import main
 
-class TestMain:
-    def test_example_1(self, search, emptyQuery):
+class TestSystem:
+    def test_example_1(self, monkeypatch, search, emptyQuery):
         pass
 
     def test_example_2(self, search, emptyQuery):

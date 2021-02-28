@@ -10,6 +10,24 @@ def emptyQuery():
     yield query
 
 @pytest.fixture
+def userSelectedQuery():
+    from query import Query
+    userSelectedQuery = Query('users', '_id', None)
+    yield userSelectedQuery
+
+@pytest.fixture
+def orgSelectedQuery():
+    from query import Query
+    orgSelectedQuery = Query('organisations', '_id', None)
+    yield orgSelectedQuery
+
+@pytest.fixture
+def ticketSelectedQuery():
+    from query import Query
+    ticketSelectedQuery = Query('tickets', 'organization_id', None)
+    yield ticketSelectedQuery
+
+@pytest.fixture
 def userQuery():
     from query import Query
     userQuery = Query('users', '_id', '1')

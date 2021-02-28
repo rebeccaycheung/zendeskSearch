@@ -3,17 +3,17 @@ import pytest
 class TestSearch:
     def test_fetch_user_terms(self, search, usersTermQuery):
         response = search.findData(usersTermQuery)
-        expectedResponse = "Fields to search by: _id\nurl\nexternal_id\nname\nalias\ncreated_at\nactive\nverified\nshared\nlocale\ntimezone\nlast_login_at\nemail\nphone\nsignature\norganization_id\ntags\nsuspended\nrole"
+        expectedResponse = "Fields to search by: \n_id\nurl\nexternal_id\nname\nalias\ncreated_at\nactive\nverified\nshared\nlocale\ntimezone\nlast_login_at\nemail\nphone\nsignature\norganization_id\ntags\nsuspended\nrole"
         assert response == expectedResponse
 
     def test_fetch_org_terms(self, search, orgsTermQuery):
         response = search.findData(orgsTermQuery)
-        expectedResponse = "Fields to search by: _id\nurl\nexternal_id\nname\ndomain_names\ncreated_at\ndetails\nshared_tickets\ntags"
+        expectedResponse = "Fields to search by: \n_id\nurl\nexternal_id\nname\ndomain_names\ncreated_at\ndetails\nshared_tickets\ntags"
         assert response == expectedResponse
 
     def test_fetch_ticket_terms(self, search, ticketsTermQuery):
         response = search.findData(ticketsTermQuery)
-        expectedResponse = "Fields to search by: _id\nurl\nexternal_id\ncreated_at\ntype\nsubject\ndescription\npriority\nstatus\nsubmitter_id\nassignee_id\norganization_id\ntags\nhas_incidents\ndue_at\nvia"
+        expectedResponse = "Fields to search by: \n_id\nurl\nexternal_id\ncreated_at\ntype\nsubject\ndescription\npriority\nstatus\nsubmitter_id\nassignee_id\norganization_id\ntags\nhas_incidents\ndue_at\nvia"
         assert response == expectedResponse
     
     def test_valid_term(self, search, userQuery):

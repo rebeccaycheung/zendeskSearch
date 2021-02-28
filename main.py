@@ -1,6 +1,8 @@
-import constants
+#!/usr/bin/env python3
+
 from search import Search
 from query import Query
+from constants import USERS, ORGS, TICKETS, RANGE_ERROR, CATEGORY_SELECTION_TRY_AGAIN, SEARCH_VALUE, CATEGORY_SELECTION, SEARCH_TERM
 
 def getUserInput(prompt):
     userInput = input(prompt)
@@ -8,14 +10,31 @@ def getUserInput(prompt):
 
 def selectSearchType(query, command):
     if (command == 1):
-        query.setCategory('users')
+        query.setCategory(USERS)
     elif (command == 2):
-        query.setCategory('organisations')
+        query.setCategory(ORGS)
     elif (command == 3):
-        query.setCategory('tickets')
+        query.setCategory(TICKETS)
     else:
-        return "Please enter a number between 1 and 3"
+        return RANGE_ERROR
     return
+
+def validateCategorySelection(query, command):
+    try:
+        selectSearchType(query, int(command))
+    except(ValueError):
+        return CATEGORY_SELECTION_TRY_AGAIN
+
+def searchEngine(search, query):
+    term = query.getTerm()
+    if (term == "terms"):
+        result = search.findData(query)
+        return result
+    else:
+        command = getUserInput(SEARCH_VALUE)
+        query.setValue(command)
+        result = search.findData(query)
+        return result
 
 def main():
     print("""
@@ -30,31 +49,19 @@ def main():
     search = Search()
     query = Query(None, None, None)
     
-    command = getUserInput(constants.CATEGORY_SELECTION)
+    command = getUserInput(CATEGORY_SELECTION)
     while command != "quit":
-        try:
-            selectSearchType(query, int(command))
-        except(ValueError):
-            print(constants.CATEGORY_SELECTION_TRY_AGAIN)
-            command = getUserInput(constants.CATEGORY_SELECTION)
-            continue
+        selectionResult = validateCategorySelection(query, command)
+        if (selectionResult != None):
+            print(selectionResult)
 
-        command = getUserInput(constants.SEARCH_TERM)
-        if (command == "terms"):
-            query.setTerm(command)
-            result = search.findData(query)
-            if (result != None):
-                print(result)
-        else:
-            termQuery = command
-            command = getUserInput(constants.SEARCH_VALUE)
-            valueQuery = command
-            query.setTerm(termQuery)
-            query.setValue(valueQuery)
-            result = search.findData(query)
-            if (result != None):
-                print(result)
-        command = getUserInput(constants.CATEGORY_SELECTION)
+        command = getUserInput(SEARCH_TERM)
+        query.setTerm(command)
+        result = searchEngine(search, query)
+        if (result != None):
+            print(result)
+
+        command = getUserInput(CATEGORY_SELECTION)
     try:
         exit(0)
     except:

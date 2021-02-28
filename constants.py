@@ -6,6 +6,7 @@ TERM_INVALID = "The term you have entered does not exist, please try again."
 SEARCHING = "Searching..."
 FINISHED_SEARCHING = "Finished searching."
 NO_RESULTS = "Cannot find any results"
+RANGE_ERROR = "Please enter a number between 1 and 3"
 
 USERS = "users"
 ORGS = "organisations"

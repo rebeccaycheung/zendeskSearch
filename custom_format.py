@@ -6,7 +6,7 @@ class CustomFormat:
 
     def formatTerms(self, keys):
         formatKeys = '\n'.join(keys)
-        return "Fields to search by: {}".format(formatKeys)
+        return "Fields to search by: \n{}".format(formatKeys)
 
     def formatData(self, data, category=""):
         if (type(data) is dict):

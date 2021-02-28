@@ -22,9 +22,9 @@ class Search:
             return value
 
     def findData(self, query):
-        users = self.readFile('users.json')
-        organisations = self.readFile('organizations.json')
-        tickets = self.readFile('tickets.json')
+        users = self.readFile('data/users.json')
+        organisations = self.readFile('data/organizations.json')
+        tickets = self.readFile('data/tickets.json')
 
         searchUsers = SearchUsers(users)
         searchOrgs = SearchOrgs(organisations)

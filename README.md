@@ -27,3 +27,7 @@ How to run tests
     $ pytest
     or if above command does not work
     $ python3 -m pytest
+
+Assumptions and Tradeoffs
+------
+When getting the terms for each category - to make it simple and fast, I'm only getting the keys from the first object of each data set. This means that the list of terms I get may not be the full set of terms the user can search by.

@@ -1,9 +1,11 @@
+# Query object to contain the user's inputs
 class Query:
     def __init__(self, category, term, value):
         self.category = category
         self.term = term
         self.value = value
-
+    
+    # Setters
     def setCategory(self, category):
         self.category = category
     
@@ -13,6 +15,7 @@ class Query:
     def setValue(self, value):
         self.value = value
     
+    # Getters
     def getCategory(self):
         return self.category
     

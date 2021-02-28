@@ -8,6 +8,7 @@ def getUserInput(prompt):
     userInput = input(prompt)
     return userInput
 
+# Check the category selection and set the query's category
 def setSearchType(query, command):
     if (command == 1):
         query.setCategory(USERS)
@@ -19,6 +20,7 @@ def setSearchType(query, command):
         return RANGE_ERROR
     return
 
+# Validate that the user input is a number when asked to select the category to search for
 def validateCategorySelection(query, command):
     try:
         setSearchType(query, int(command))

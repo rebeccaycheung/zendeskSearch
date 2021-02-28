@@ -11,7 +11,7 @@ class SearchUsers:
 
     #Temporary solution - need to figure out how to get all possible keys
     def getUsersKeys(self):
-        return self.users[0]
+        return [*self.users[0]]
 
     def getUsersKeysFormat(self):
         customFormat = CustomFormat()
@@ -33,19 +33,20 @@ class SearchUsers:
         customFormat = CustomFormat()
 
         organisationId = user['organization_id']
-        organisationData = searchOrgs.getOrganisationData(organisationId)
+        organisationData = searchOrgs.getOrgData(organisationId)
         ticketData = searchTickets.getTicketData(organisationId)
 
         print(color.UNDERLINE + color.BOLD + "Result for user with {} as {}".format(term, value) + color.END)
-        print(customFormat.formatData(user))
+        customFormat.formatData(user)
         print(color.UNDERLINE + color.BOLD + "Organisation result for user with {} as {}".format(term, value) + color.END)
-        print(customFormat.formatData(organisationData))
+        customFormat.formatData(organisationData)
         print(color.UNDERLINE + color.BOLD + "Ticket results for user with {} as {}".format(term, value) + color.END)
-        print(customFormat.formatData(ticketData, "ticket"))
-        return
-    
+        customFormat.formatData(ticketData, "ticket")
+
+        return True
+
     def validateTerm(self, term):
-        usersKeys = set(self.getUsersKeys())
+        usersKeys = self.getUsersKeys()
 
         if (term in usersKeys):
             return True

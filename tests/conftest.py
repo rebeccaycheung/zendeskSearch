@@ -1,4 +1,7 @@
 import pytest
+from data_test import userData
+from data_test import orgData
+from data_test import ticketData
 
 @pytest.fixture
 def emptyQuery():
@@ -7,10 +10,52 @@ def emptyQuery():
     yield query
 
 @pytest.fixture
-def query():
+def userQuery():
     from query import Query
-    query = Query('users', '_id', '1')
-    yield query
+    userQuery = Query('users', '_id', '1')
+    yield userQuery
+
+@pytest.fixture
+def orgQuery():
+    from query import Query
+    orgQuery = Query('organisations', '_id', '122')
+    yield orgQuery
+
+@pytest.fixture
+def ticketQuery():
+    from query import Query
+    ticketQuery = Query('tickets', 'organization_id', '122')
+    yield ticketQuery
+
+@pytest.fixture
+def noDataQuery():
+    from query import Query
+    noDataQuery = Query('users', '_id', '123')
+    yield noDataQuery
+
+@pytest.fixture
+def invalidQuery():
+    from query import Query
+    invalidQuery = Query('users', 'testing', '123456')
+    yield invalidQuery
+
+@pytest.fixture
+def usersTermQuery():
+    from query import Query
+    usersTermQuery = Query('users', 'terms', 'None')
+    yield usersTermQuery
+
+@pytest.fixture
+def orgsTermQuery():
+    from query import Query
+    orgsTermQuery = Query('organisations', 'terms', 'None')
+    yield orgsTermQuery
+
+@pytest.fixture
+def ticketsTermQuery():
+    from query import Query
+    ticketsTermQuery = Query('tickets', 'terms', 'None')
+    yield ticketsTermQuery
 
 @pytest.fixture
 def search():
@@ -21,30 +66,20 @@ def search():
 @pytest.fixture
 def searchUsers():
     from search_user import SearchUsers
-    users = [{
-        "_id": 1,
-        "url": "http://initech.zendesk.com/api/v2/users/1.json",
-        "organization_id": 121
-    }],
+    users = userData
     searchUsers = SearchUsers(users)
     yield searchUsers
 
 @pytest.fixture
 def searchOrgs():
     from search_organisation import SearchOrgs
-    orgs = [{
-        "_id": 121,
-        "url": "http://initech.zendesk.com/api/v2/organizations/121.json"
-    }],
+    orgs = orgData
     searchOrgs = SearchOrgs(orgs)
     yield searchOrgs
 
 @pytest.fixture
 def searchTickets():
     from search_tickets import SearchTickets
-    tickets = [{
-        "_id": "c527e065-ec62-40ed-aa72-136f5ab0eb89",
-        "organization_id": 121,
-    }],
+    tickets = ticketData
     searchTickets = SearchTickets(tickets)
     yield searchTickets

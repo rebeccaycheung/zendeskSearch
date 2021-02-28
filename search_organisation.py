@@ -11,13 +11,13 @@ class SearchOrgs:
 
     #Temporary solution - need to figure out how to get all possible keys
     def getOrgsKeys(self):
-        return self.orgs[0]
+        return [*self.orgs[0]]
 
     def getOrgsKeysFormat(self):
         customFormat = CustomFormat()
         return customFormat.formatTerms(self.getOrgsKeys())
 
-    def getOrganisationData(self, organisationId):
+    def getOrgData(self, organisationId):
         for organisation in self.orgs:
             try:
                 if organisation['_id'] == organisationId:
@@ -39,10 +39,11 @@ class SearchOrgs:
         print(customFormat.formatData(userData))
         print(color.UNDERLINE + color.BOLD + "Ticket results for organisation with {} as {}".format(term, value) + color.END)
         print(customFormat.formatData(ticketData, "ticket"))
-        return
+        
+        return True
     
     def validateTerm(self, term):
-        orgsKeys = set(self.getOrgsKeys())
+        orgsKeys = self.getOrgsKeys()
 
         if (term in orgsKeys):
             return True

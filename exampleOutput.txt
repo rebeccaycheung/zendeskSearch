@@ -1,0 +1,169 @@
+Select which to search by 1) users, 2) organisations, 3) tickets: 1
+Search by term: _id
+Enter a value: 1
+Searching...
+Result for user with _id as 1
+_id                   1
+url                   http://initech.zendesk.com/api/v2/users/1.json
+external_id           74341f74-9c79-49d5-9611-87ef9b6eb75f
+name                  Francisca Rasmussen
+alias                 Miss Coffey
+created_at            2016-04-15T05:19:46 -10:00
+active                True
+verified              True
+shared                False
+locale                en-AU
+timezone              Sri Lanka
+last_login_at         2013-08-04T01:03:27 -10:00
+email                 coffeyrasmussen@flotonic.com
+phone                 8335-422-718
+signature             Don't Worry Be Happy!
+organization_id       119
+tags                  ['Springville', 'Sutton', 'Hartsville/Hartley', 'Diaperville']
+suspended             True
+role                  admin
+Organisation result for user with _id as 1
+_id                   119
+url                   http://initech.zendesk.com/api/v2/organizations/119.json
+external_id           2386db7c-5056-49c9-8dc4-46775e464cb7
+name                  Multron
+domain_names          ['bleeko.com', 'pulze.com', 'xoggle.com', 'sultraxin.com']
+created_at            2016-02-29T03:45:12 -11:00
+details               Non profit
+shared_tickets        False
+tags                  ['Erickson', 'Mccoy', 'Wiggins', 'Brooks']
+Ticket results for user with _id as 1
+ticket 1
+_id                   9cbbadfe-7242-4d5a-af78-62aa7191d944
+url                   http://initech.zendesk.com/api/v2/tickets/9cbbadfe-7242-4d5a-af78-62aa7191d944.json
+external_id           d193deb7-92d5-4004-a532-4a1cd30449c5
+created_at            2016-01-30T12:45:37 -11:00
+type                  task
+subject               A Nuisance in Bangladesh
+description           Laboris irure aliquip quis consequat Lorem aute irure enim incididunt officia duis ipsum. Velit consequat id irure irure irure Lorem labore.
+priority              high
+status                pending
+submitter_id          43
+assignee_id           64
+organization_id       119
+tags                  ['Kentucky', 'North Carolina', 'South Carolina', 'Indiana']
+has_incidents         False
+due_at                2016-08-14T09:28:10 -10:00
+via                   voice
+
+
+ticket 2
+_id                   daf8d797-3d09-4c93-9f3b-a642b63ded99
+url                   http://initech.zendesk.com/api/v2/tickets/daf8d797-3d09-4c93-9f3b-a642b63ded99.json
+external_id           93218b46-fbfc-47ac-8695-55bbc309e1a9
+created_at            2016-03-19T09:00:31 -11:00
+type                  question
+subject               A Catastrophe in San Marino
+description           Qui veniam commodo deserunt pariatur. Anim tempor laborum nulla magna irure ex officia nostrud incididunt ut proident fugiat.
+priority              normal
+status                solved
+submitter_id          73
+assignee_id           50
+organization_id       119
+tags                  ['District Of Columbia', 'Wisconsin', 'Illinois', 'Fédératéd Statés Of Micronésia']
+has_incidents         True
+due_at                2016-08-02T04:31:48 -10:00
+via                   chat
+
+
+ticket 3
+_id                   0ca339ca-b056-4e1a-85ef-b1113c331660
+url                   http://initech.zendesk.com/api/v2/tickets/0ca339ca-b056-4e1a-85ef-b1113c331660.json
+external_id           9a75c3f6-77c6-4974-b4da-4ebebb68dcf2
+created_at            2016-02-19T02:50:01 -11:00
+type                  incident
+subject               A Drama in Chad
+description           Culpa nisi reprehenderit consectetur in elit duis duis sint nisi. Ad est aliqua ea qui aute cillum et laboris proident laboris excepteur dolore.
+priority              normal
+status                solved
+submitter_id          67
+assignee_id           22
+organization_id       119
+tags                  ['Guam', 'Colorado', 'Washington', 'Wyoming']
+has_incidents         True
+due_at                2016-08-05T08:46:22 -10:00
+via                   web
+
+
+ticket 4
+_id                   6e77bbf1-5fc7-4f41-aeb1-74f8730f974b
+url                   http://initech.zendesk.com/api/v2/tickets/6e77bbf1-5fc7-4f41-aeb1-74f8730f974b.json
+external_id           3ce8b7f5-952b-485a-a6c3-8d5259d3850a
+created_at            2016-06-24T07:57:38 -10:00
+type                  problem
+subject               A Problem in Guatemala
+description           Ex labore dolor commodo magna ex pariatur sunt amet ad quis duis laborum. Fugiat anim non esse eu sunt elit.
+priority              high
+status                open
+submitter_id          49
+assignee_id           26
+organization_id       119
+tags                  ['Texas', 'Nevada', 'Oregon', 'Arizona']
+has_incidents         True
+due_at                2016-08-01T11:20:58 -10:00
+via                   voice
+
+
+ticket 5
+_id                   ec987652-c323-4368-899d-f3c357ff4b87
+url                   http://initech.zendesk.com/api/v2/tickets/ec987652-c323-4368-899d-f3c357ff4b87.json
+external_id           65a97e71-d859-400c-8051-12b22214255b
+created_at            2016-05-02T12:31:05 -10:00
+type                  question
+subject               A Nuisance in Suriname
+description           Quis sit nulla culpa mollit commodo cupidatat do proident elit ea ea. Et dolore duis consectetur exercitation aliqua.
+priority              high
+status                closed
+submitter_id          27
+assignee_id           39
+organization_id       119
+tags                  ['Rhodé Island', 'Kansas', 'Guam', 'Colorado']
+has_incidents         False
+due_at                2016-08-05T12:38:00 -10:00
+via                   chat
+
+
+ticket 6
+_id                   5613ffcb-8a33-4341-9be7-1534ae1050bc
+url                   http://initech.zendesk.com/api/v2/tickets/5613ffcb-8a33-4341-9be7-1534ae1050bc.json
+external_id           da1f1d35-f33e-4b82-ad2e-a815cfb38023
+created_at            2016-01-18T08:51:11 -11:00
+type                  problem
+subject               A Catastrophe in Thailand
+description           Quis quis adipisicing nulla nulla. Magna deserunt qui amet cupidatat pariatur commodo quis sit culpa veniam quis aliquip sunt.
+priority              low
+status                solved
+submitter_id          51
+assignee_id           33
+organization_id       119
+tags                  ['Iowa', 'North Dakota', 'California', 'Palau']
+has_incidents         False
+due_at                2016-08-15T01:48:37 -10:00
+via                   voice
+
+
+ticket 7
+_id                   4cd61a2d-22bf-467c-9db0-a082b1125394
+url                   http://initech.zendesk.com/api/v2/tickets/4cd61a2d-22bf-467c-9db0-a082b1125394.json
+external_id           d3e70e24-9765-42dc-a172-bda1945ae8a8
+created_at            2016-07-05T09:21:49 -10:00
+type                  problem
+subject               A Drama in Nigeria
+description           Lorem enim adipisicing minim dolore sunt laboris officia cupidatat adipisicing non elit minim. Eu ut nostrud excepteur voluptate reprehenderit aute ad sint cillum mollit fugiat.
+priority              low
+status                open
+submitter_id          74
+assignee_id           46
+organization_id       119
+tags                  ['Missouri', 'Alabama', 'Virginia', 'Virgin Islands']
+has_incidents         False
+due_at                2016-08-01T05:32:02 -10:00
+via                   web
+
+
+Finished searching.

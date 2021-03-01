@@ -1,6 +1,7 @@
 import pytest
-from data_test import orgData
+from data.data_test import orgData
 
+# Tests for the organisation search object
 class TestOrgs:
     def test_org_has_data(self, searchOrgs):
         response = searchOrgs.getOrgs()

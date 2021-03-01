@@ -3,6 +3,7 @@ from data.data_test import userData
 from data.data_test import orgData
 from data.data_test import ticketData
 
+# Fixtures to use within the tests - sets up the objects that are needed
 @pytest.fixture
 def emptyQuery():
     from engine.query import Query

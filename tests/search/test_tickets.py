@@ -1,6 +1,7 @@
 import pytest
-from data_test import ticketData
+from data.data_test import ticketData
 
+# Tests for the ticket search object
 class TestSearchTickets:
     def test_tickets_has_data(self, searchTickets):
         response = searchTickets.getTickets()

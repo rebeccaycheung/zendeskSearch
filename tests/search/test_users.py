@@ -1,6 +1,7 @@
 import pytest
-from data_test import userData
+from data.data_test import userData
 
+# Tests for the user search object
 class TestSearchUsers:
     def test_user_has_data(self, searchUsers):
         response = searchUsers.getUsers()

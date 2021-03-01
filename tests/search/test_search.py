@@ -1,5 +1,6 @@
 import pytest
 
+# Tests for the search object
 class TestSearch:
     def test_fetch_user_terms(self, search, usersTermQuery):
         response = search.findData(usersTermQuery)

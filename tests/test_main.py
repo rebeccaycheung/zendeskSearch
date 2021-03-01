@@ -5,6 +5,7 @@ from main import setSearchType
 from main import searchEngine
 from main import validateCategorySelection
 
+# Tests for the Main file
 class TestMain:
     def test_user_input(self, monkeypatch):
         # Mock the user input using monkeypatch

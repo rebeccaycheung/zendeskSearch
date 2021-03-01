@@ -29,7 +29,7 @@ class TestSearchUsers:
         expectedResponse = "Cannot find any results"
         assert response == expectedResponse
     
-    def test_fetch_data_by_user(self, capfd, searchUsers, searchOrgs, searchTickets):
+    def test_fetch_data_by_user(self, searchUsers, searchOrgs, searchTickets):
         term = "_id"
         value = 1
         user = {

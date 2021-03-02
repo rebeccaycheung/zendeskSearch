@@ -50,9 +50,14 @@ def main():
         Welcome to Zendesk Search!
 
         Type 'quit' to exit the program at any time.
-        Type 'terms' to view a list of terms you can search by for each category.
 
-        Start by searching the term and value.
+        Start by selecting a category to search by:
+            - Type 1 for users
+            - Type 2 for organisations
+            - Type 3 for tickets
+        Then search by term and value
+
+        When prompted for a term type 'terms' to view a list of terms you can search by for each category.
     """)
 
     #Instantiate search and query object

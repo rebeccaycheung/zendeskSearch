@@ -25,12 +25,10 @@ class Search:
 
     # Main function to search the data
     def findData(self, query):
-        # Read all data files
         users = self.readFile('data/users.json')
         organisations = self.readFile('data/organizations.json')
         tickets = self.readFile('data/tickets.json')
 
-        # Instantiate all search objects
         searchUsers = SearchUsers(users)
         searchOrgs = SearchOrgs(organisations)
         searchTickets = SearchTickets(tickets)
@@ -44,7 +42,6 @@ class Search:
         if (term != TERMS) and not (searchUsers.validateTerm(term) or searchOrgs.validateTerm(term) or searchTickets.validateTerm(term)):
             return TERM_INVALID
         
-        # If the category is users
         if (category == USERS):
             # Check if the user wants the terms
             if (term == TERMS):
@@ -68,50 +65,36 @@ class Search:
                                 return FINISHED_SEARCHING
                         except(TypeError):
                             continue
-        # If the category is organisations
         elif (category == ORGS):
-            # Check if the user wants the terms
             if (term == TERMS):
                 return searchOrgs.getOrgsKeysFormat()
             else:
                 print(SEARCHING)
                 for organisation in searchOrgs.getOrgs():
-                    # Search the organisation data and find the organisation that matches the query
                     convertedValue = self.convertValue(value)
-                    # Check if key value pair is string
                     if organisation[term] == convertedValue:
-                        # If a organisation is found then search the rest of the data to find the users and tickets
                         searchOrgs.getData(organisation, searchUsers, searchTickets, value, term)
                         return FINISHED_SEARCHING
                     else:
                         try:
-                            # Check if the key value is a list
                             if convertedValue in organisation[term]:
-                                # If a organisation is found then search the rest of the data to find the users and tickets
                                 searchOrgs.getData(organisation, searchUsers, searchTickets, value, term)
                                 return FINISHED_SEARCHING
                         except(TypeError):
                             continue
-        # If the category is tickets
         elif (category == TICKETS):
-            # Check if the user wants the terms
             if (term == TERMS):
                 return searchTickets.getTicketsKeysFormat()
             else:
                 print(SEARCHING)
                 for ticket in searchTickets.getTickets():
-                    # Search the ticket data and find the ticket that matches the query
                     convertedValue = self.convertValue(value)
-                    # Check if key value pair is string
                     if ticket[term] == convertedValue:
-                        # If a ticket is found then search the rest of the data to find the organisation and users
                         searchTickets.getData(ticket, searchUsers, searchOrgs, value, term)
                         return FINISHED_SEARCHING
                     else:
                         try:
-                            # Check if the key value is a list
                             if convertedValue in ticket[term]:
-                                # If a ticket is found then search the rest of the data to find the organisation and users
                                 searchTickets.getData(ticket, searchUsers, searchOrgs, value, term)
                                 return FINISHED_SEARCHING
                         except(TypeError):

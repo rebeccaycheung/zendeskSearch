@@ -17,15 +17,17 @@ def setSearchType(query, command):
     elif (command == 3):
         query.setCategory(TICKETS)
     else:
-        return RANGE_ERROR
-    return
+        print(RANGE_ERROR)
+        return False
+    return True
 
 # Validate that the user input is a number when asked to select the category to search for
 def validateCategorySelection(query, command):
     try:
-        setSearchType(query, int(command))
+        return setSearchType(query, int(command))
     except(ValueError):
-        return CATEGORY_SELECTION_TRY_AGAIN
+        print(CATEGORY_SELECTION_TRY_AGAIN)
+        return False
 
 #Main function to search the data
 def searchEngine(search, query):
@@ -63,8 +65,10 @@ def main():
     while command != "quit":
         #Validate the user input
         selectionResult = validateCategorySelection(query, command)
-        if (selectionResult != None):
-            print(selectionResult)
+        if (not selectionResult):
+            #Repeat the search until user quits
+            command = getUserInput(CATEGORY_SELECTION)
+            continue
 
         #Ask the user what term to search by
         command = getUserInput(SEARCH_TERM)

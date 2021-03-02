@@ -4,17 +4,17 @@ import pytest
 class TestSearch:
     def test_fetch_user_terms(self, search, usersTermQuery):
         response = search.findData(usersTermQuery)
-        expectedResponse = "Fields to search by: \n_id\nurl\nexternal_id\nname\nalias\ncreated_at\nactive\nverified\nshared\nlocale\ntimezone\nlast_login_at\nemail\nphone\nsignature\norganization_id\ntags\nsuspended\nrole"
+        expectedResponse = "Fields to search by: \n- _id\n- url\n- external_id\n- name\n- alias\n- created_at\n- active\n- verified\n- shared\n- locale\n- timezone\n- last_login_at\n- email\n- phone\n- signature\n- organization_id\n- tags\n- suspended\n- role"
         assert response == expectedResponse
 
     def test_fetch_org_terms(self, search, orgsTermQuery):
         response = search.findData(orgsTermQuery)
-        expectedResponse = "Fields to search by: \n_id\nurl\nexternal_id\nname\ndomain_names\ncreated_at\ndetails\nshared_tickets\ntags"
+        expectedResponse = "Fields to search by: \n- _id\n- url\n- external_id\n- name\n- domain_names\n- created_at\n- details\n- shared_tickets\n- tags"
         assert response == expectedResponse
 
     def test_fetch_ticket_terms(self, search, ticketsTermQuery):
         response = search.findData(ticketsTermQuery)
-        expectedResponse = "Fields to search by: \n_id\nurl\nexternal_id\ncreated_at\ntype\nsubject\ndescription\npriority\nstatus\nsubmitter_id\nassignee_id\norganization_id\ntags\nhas_incidents\ndue_at\nvia"
+        expectedResponse = "Fields to search by: \n- _id\n- url\n- external_id\n- created_at\n- type\n- subject\n- description\n- priority\n- status\n- submitter_id\n- assignee_id\n- organization_id\n- tags\n- has_incidents\n- due_at\n- via"
         assert response == expectedResponse
     
     def test_valid_term(self, search, userQuery):

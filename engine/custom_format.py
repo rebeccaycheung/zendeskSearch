@@ -6,9 +6,9 @@ class CustomFormat:
         pass
 
     def formatTerms(self, keys):
-        formatKeys = '\n'.join(keys)
+        formatKeys = '\n- '.join(keys)
         # Join the items in the list with a new line so it outputs nicely for the user
-        return "Fields to search by: \n{}".format(formatKeys)
+        return "Fields to search by: \n- {}".format(formatKeys)
 
     def formatData(self, data, category=""):
         if (type(data) is dict):

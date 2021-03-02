@@ -50,8 +50,8 @@ class Search:
             if (term == TERMS):
                 return searchUsers.getUsersKeysFormat()
             else:
+                print(SEARCHING)
                 for user in searchUsers.getUsers():
-                    print(SEARCHING)
                     # Search the user data and find the user that matches the query
                     convertedValue = self.convertValue(value)
                     # Check if key value pair is string
@@ -74,8 +74,8 @@ class Search:
             if (term == TERMS):
                 return searchOrgs.getOrgsKeysFormat()
             else:
+                print(SEARCHING)
                 for organisation in searchOrgs.getOrgs():
-                    print(SEARCHING)
                     # Search the organisation data and find the organisation that matches the query
                     convertedValue = self.convertValue(value)
                     # Check if key value pair is string
@@ -98,8 +98,8 @@ class Search:
             if (term == TERMS):
                 return searchTickets.getTicketsKeysFormat()
             else:
+                print(SEARCHING)
                 for ticket in searchTickets.getTickets():
-                    print(SEARCHING)
                     # Search the ticket data and find the ticket that matches the query
                     convertedValue = self.convertValue(value)
                     # Check if key value pair is string

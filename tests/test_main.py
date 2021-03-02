@@ -16,51 +16,66 @@ class TestMain:
     def test_valid_category_selection(self, monkeypatch, emptyQuery):
         monkeypatch.setattr('builtins.input', lambda _: "1")
         user_input = input("Select which to search by 1) users, 2) organisations, 3) tickets: ")
-        setSearchType(emptyQuery, int(user_input))
+        response = setSearchType(emptyQuery, int(user_input))
         assert emptyQuery.getCategory() == 'users'
+        assert response == True
 
         monkeypatch.setattr('builtins.input', lambda _: "2")
         user_input = input("Select which to search by 1) users, 2) organisations, 3) tickets: ")
-        setSearchType(emptyQuery, int(user_input))
+        response = setSearchType(emptyQuery, int(user_input))
         assert emptyQuery.getCategory() == 'organisations'
+        assert response == True
 
         monkeypatch.setattr('builtins.input', lambda _: "3")
         user_input = input("Select which to search by 1) users, 2) organisations, 3) tickets: ")
-        setSearchType(emptyQuery, int(user_input))
+        response = setSearchType(emptyQuery, int(user_input))
         assert emptyQuery.getCategory() == 'tickets'
-    
-    def test_invalid_range_category_selection(self, monkeypatch, emptyQuery):
+        assert response == True
+
+    def test_invalid_range_category_selection(self, capfd, monkeypatch, emptyQuery):
         monkeypatch.setattr('builtins.input', lambda _: "123")
         user_input = input("Select which to search by 1) users, 2) organisations, 3) tickets: ")
         response = setSearchType(emptyQuery, int(user_input))
-        assert response == "Please enter a number between 1 and 3"
+        out, err = capfd.readouterr()
+        assert out == "Please enter a number between 1 and 3\n"
+        assert response == False
 
         monkeypatch.setattr('builtins.input', lambda _: "4")
         user_input = input("Select which to search by 1) users, 2) organisations, 3) tickets: ")
         response = setSearchType(emptyQuery, int(user_input))
-        assert response == "Please enter a number between 1 and 3"
+        out, err = capfd.readouterr()
+        assert out == "Please enter a number between 1 and 3\n"
+        assert response == False
 
         monkeypatch.setattr('builtins.input', lambda _: "0")
         user_input = input("Select which to search by 1) users, 2) organisations, 3) tickets: ")
         response = setSearchType(emptyQuery, int(user_input))
-        assert response == "Please enter a number between 1 and 3"
+        out, err = capfd.readouterr()
+        assert out == "Please enter a number between 1 and 3\n"
+        assert response == False
 
-    def test_invalid_category_selection(self, monkeypatch, emptyQuery):
+    def test_invalid_category_selection(self, capfd, monkeypatch, emptyQuery):
         monkeypatch.setattr('builtins.input', lambda _: "testing")
         user_input = input("Select which to search by 1) users, 2) organisations, 3) tickets: ")
         response = validateCategorySelection(emptyQuery, user_input)
-        assert response == "Input was not a number between 1-3, please try again."
+        out, err = capfd.readouterr()
+        assert out == "Input was not a number between 1-3, please try again.\n"
+        assert response == False
 
         monkeypatch.setattr('builtins.input', lambda _: "!@#$$%#")
         user_input = input("Select which to search by 1) users, 2) organisations, 3) tickets: ")
         response = validateCategorySelection(emptyQuery, user_input)
-        assert response == "Input was not a number between 1-3, please try again."
+        out, err= capfd.readouterr()
+        assert out == "Input was not a number between 1-3, please try again.\n"
+        assert response == False
 
         monkeypatch.setattr('builtins.input', lambda _: "         ")
         user_input = input("Select which to search by 1) users, 2) organisations, 3) tickets: ")
         response = validateCategorySelection(emptyQuery, user_input)
-        assert response == "Input was not a number between 1-3, please try again."
-    
+        out, err = capfd.readouterr()
+        assert out == "Input was not a number between 1-3, please try again.\n"
+        assert response == False
+
     def test_quit_input(self, monkeypatch, emptyQuery):
         monkeypatch.setattr('builtins.input', lambda _: "quit")
 
